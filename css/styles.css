@@ -1,77 +1,121 @@
 /*
- *
- * CSS written based on SMACSS architecture.
- * To learn more, visit: http://smacss.com/
- * 
- * For simplicity, no reset or normalize is added. 
- * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
- *
+*
+* CSS written based on SMACSS architecture.
+* To learn more, visit: http://smacss.com/
+* 
+* For simplicity, no reset or normalize is added. 
+* To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
+*
 */
 
 /* ---- Base Rules ---- */
-body {
-  background: rgb(136, 203, 171);
-  background: linear-gradient(
-    0deg,
-    rgba(136, 203, 171, 1) 0%,
-    rgba(0, 13, 60, 1) 100%
-  );
+*,
+*::after,
+*::before {
   margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  /* this defines what 1rem is */
+  /* 1rem = 10px */
+  font-size: 62.5%;
+}
+
+@media (max-width: 1200px) {
+  html {
+    /* 1rem = 9px */
+    font-size: 56.25%;
+  }
+}
+
+@media (max-width: 900px) {
+  html {
+    /* 1rem = 8px */
+    font-size: 56.25%;
+  }
+}
+
+@media (min-width: 1600px) {
+  html {
+    /* 1rem = 12px */
+    font-size: 75%;
+  }
+}
+
+body {
+  box-sizing: border-box;
   font-family: "Merriweather", serif;
-  color: #fff;
+  color: #f4b852;
+  /* background: linear-gradient(
+    0deg,
+    rgba(205, 191, 252, 1) 0%,
+    rgba(243, 255, 202, 1) 45%,
+    rgba(206, 226, 238, 1) 100%
+  ); */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Typeography General*/
 h1 {
   font-family: "Fira Sans", sans-serif;
-  font-size: 3em;
-  margin: 2em 1rem;
+  font-size: 8rem;
+  margin-top: -4rem;
 }
 
-@media only screen and (min-width: 35em) {
+/* @media only screen and (min-width: 35em) {
   h1 {
     font-size: 7em;
     margin: 2em 4rem 1em;
   }
-}
+} */
 
 h2 {
   border-bottom: 1px solid #cc1;
   font-family: "Oxygen", Sans-Serif;
-  font-size: 3em;
+  font-size: 7em;
   color: #fff;
 }
 
-p {
-  line-height: 1.6em;
-  color: #eee;
-}
-
 /* ---- Layout Rules ---- */
-main {
-  margin: 10vh 1em 10vh;
-}
-
-.main-hero {
-  min-height: 40vh;
+.main__hero {
+  height: 90vh;
   padding-top: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 section {
-  position: relative;
-  min-height: 80vh;
+  /* position: relative;
+  min-height: 80vh; */
+  height: 60vh;
 }
 
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
-.navbar__menu ul {
-  padding-left: 0;
-  margin: 0;
-  text-align: right;
+.page__header {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  width: 30%;
 }
 
-.navbar__menu li {
+#navbar__list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar__list-element {
+  color: #fff;
+  font-size: 2rem;
   display: inline-block;
 }
 
@@ -91,16 +135,17 @@ section {
 
 /* Header Styles */
 .page__header {
-  background: #fff;
-  position: fixed;
-  top: 0;
-  width: 100%;
+  background: #425563;
+  /* position: fixed; COULD NEED CHANGE */
+  /* top: 0; */
+  /* width: 100%; */
   z-index: 5;
+  height: 10vh;
 }
 
 /* Footer Styles */
 .page__footer {
-  background: #000;
+  background: #1d262c;
   padding: 3em;
   color: #fff;
 }
@@ -111,22 +156,28 @@ section {
 
 /* ---- Theme Rules ---- */
 /* Landing Container Styles */
+/* section[data-nav] {
+  width: 100vw;
+} */
+
 .landing__container {
   padding: 1em;
+  background: #e7e7e7;
   text-align: left;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-@media only screen and (min-width: 35em) {
+/* @media only screen and (min-width: 35em) {
   .landing__container {
     max-width: 50em;
     padding: 4em;
   }
-}
+} */
 
 section:nth-of-type(even) .landing__container {
-  margin-right: 0;
-  margin-left: auto;
-  text-align: right;
+  background: #f6f6f6;
 }
 
 /* Background Circles */
@@ -182,7 +233,7 @@ section:nth-of-type(3n) .landing__container::after {
   transition: ease 0.5s all;
 }
 
-section:nth-of-type(3n + 1) .landing__container::after {
+/* section:nth-of-type(3n + 1) .landing__container::after {
   content: "";
   background: rgb(255, 255, 255);
   background: linear-gradient(
@@ -199,7 +250,7 @@ section:nth-of-type(3n + 1) .landing__container::after {
   border-radius: 50%;
   opacity: 0;
   transition: ease 0.5s all;
-}
+} */
 
 /* ---- Theme State Rules ---- */
 /* Section Active Styles */
